@@ -2,7 +2,7 @@
 
 ## Descripción del Proyecto
 
-KioskPay es un sistema de pasarela de pago diseñado para máquinas de quiosco de autoservicio. Facilita y agiliza las transacciones, ofreciendo una solución para el procesamiento de pagos en este entorno.
+KioskPay, es un sistema de pasarela de pago diseñado para máquinas de quiosco de autoservicio. Facilita y agiliza las transacciones, ofreciendo una solución para el procesamiento de pagos en este entorno.
 
 ## Características Principales
 
