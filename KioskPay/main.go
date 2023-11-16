@@ -10,7 +10,7 @@ import (
 
 func handler(w http.ResponseWriter, r *http.Request) {
 	// Lee el contenido del archivo HTML
-	htmlContent, err := readFile("static/index.html")
+	htmlContent, err := readFile("templates/index.html")
 	if err != nil {
 		http.Error(w, "Error al leer el archivo HTML", http.StatusInternalServerError)
 		return
@@ -44,7 +44,10 @@ func readFile(filename string) (string, error) {
 
 func main() {
 	http.HandleFunc("/", handler)
-	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("src/static/index.html"))))
+	// Manejador para los archivos estáticos (CSS y JavaScript)
+	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
+
+
 	fmt.Println("Servidor escuchando en http://localhost:8080")
 	http.ListenAndServe(":8080", nil)
 }
