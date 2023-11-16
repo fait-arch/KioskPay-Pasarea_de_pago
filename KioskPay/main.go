@@ -47,7 +47,7 @@ func main() {
 	// Manejador para los archivos estáticos (CSS y JavaScript)
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 
-
+	//Abrir puerto local 8080
 	fmt.Println("Servidor escuchando en http://localhost:8080")
 	http.ListenAndServe(":8080", nil)
 }
