@@ -1,5 +1,5 @@
 # KioskPay
-
+![Logo KioskPay](/Proyecto_KioskPay/KioskPay/multimedia/logo_KioskPay.jpeg)
 ## Descripción del Proyecto
 
 KioskPay, es un sistema de pasarela de pago diseñado para máquinas de quiosco de autoservicio. Facilita y agiliza las transacciones, ofreciendo una solución para el procesamiento de pagos en este entorno.
@@ -8,9 +8,9 @@ KioskPay, es un sistema de pasarela de pago diseñado para máquinas de quiosco 
 
 - **Facilidad de Uso:** Interfaz intuitiva para una experiencia sin complicaciones.
 - **Integración con Quioscos:** Se integra perfectamente con máquinas de quiosco de autoservicio.
-- **Seguridad:** Medidas robustas para proteger la información sensible y prevenir fraudes.
+<!-- - **Seguridad:** Medidas robustas para proteger la información sensible y prevenir fraudes.
 - **Diversidad de Métodos de Pago:** Admite tarjetas de crédito, tarjetas de débito y otras opciones electrónicas.
-
+-->
 ## Instalación
 
 1. Clona el repositorio: `git clone https://github.com/tuusuario/KioskPay.git`
