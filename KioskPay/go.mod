@@ -1,5 +1,5 @@
-module github.com/fait-arch/KioskPay-Pasarea_de_pago
+module KioskPay
 
 go 1.21.4
 
-require ()
+require github.com/gorilla/mux v1.8.0

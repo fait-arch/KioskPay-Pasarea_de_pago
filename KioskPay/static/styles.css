@@ -16,7 +16,7 @@ body, html {
 }
 
 header {
-  background-color: #fffacd; /* Amarillo pastel */
+  background-color: #FBD025; /* Amarillo pastel */
   color: #333;
   padding: 20px 0;
   text-align: center;
@@ -107,7 +107,7 @@ button:hover {
 }
 
 footer {
-  background-color: #fffacd; /* Color amarillo pastel */
+  background-color: #FBD025; /* Color amarillo pastel */
   color: #333;
   text-align: center;
   padding: 10px 0;
@@ -252,7 +252,6 @@ footer {
 .next-step-btn:hover {
   background-color: #007ba7;
 }
-
 
 
 
