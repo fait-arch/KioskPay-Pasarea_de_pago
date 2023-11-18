@@ -11,25 +11,25 @@ body, html {
   width: 80%;
   margin: auto;
   overflow: hidden;
-  padding: 20px 0;
+  padding: 20px 0 100px;
   text-align: center;
 }
 
 header {
   background-color: #FBD025; /* Amarillo pastel */
   color: #333;
-  padding: 20px 0;
+  padding: 20px 0 50px 0;
   text-align: center;
 }
 
-header h1 {
+.header-container h1 {
   margin-bottom: 0.5em;
   font-size: 3em;
   font-weight: bold;
   color: #4a4a4a; /* Gris oscuro */
 }
 
-header h2 {
+.header-container h2 {
   margin-top: 0;
   margin-bottom: 1em;
   font-size: 1.5em;
@@ -37,9 +37,9 @@ header h2 {
   color: #6a6a6a; /* Gris medio */
 }
 
-header p {
+.header-container p {
   margin-top: 0;
-  font-size: 1em;
+  font-size: 1.3em;
   line-height: 1.5;
   color: #8a8a8a; /* Gris claro */
   max-width: 600px;
