@@ -1,41 +1,274 @@
 <!-- styles.css --> 
 <!DOCTYPE html>
+<html lang="es">
 
-<html>
+
   <head>
     <meta charset="UTF-8" />    
-    <link rel="icon" href="img/--" type="image/png">
-    <title>KioskPay</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/styles.css" />
     <script src="/static/script.js" type="module"></script>
+
+    <title>KioskPay</title>
+
+
+
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gsX|tatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
+  
   </head>
+
 
   <body>
 
-    <!--
-    <div class="container">
-      <button class="button-85" id="btnConfeti">  Touch me🎉 </button>
-    </div>
+    <header>
+      <div class="container header-container">
+        <h1>KioskPay</h1>
+        <h2>PASARELA DE PAGO</h2>
+        <p>KioskPay es un sistema de pasarela de pago diseñado para máquinas de quiosco de autoservicio. Facilita y agiliza las transacciones, ofreciendo una solución para el procesamiento de pagos en este entorno.</p>
+      </div>
 
-    <script src="JavaScript/script.js" type="module"></script>
-    -->
-    <div class="cabecera">
-        <h1>Cabecera</h1>
-        <!-- Agrega aquí cualquier otro contenido de la cabecera que desees -->
-    </div>
+    </header>
+  
+    <main>
+      <div class="container header-container">
+        <h1>KioskPay</h1>
+        <h2>PASARELA DE PAGO</h2>
+        <p>KioskPay es un sistema de pasarela de pago diseñado para máquinas de quiosco de autoservicio. Facilita y agiliza las transacciones, ofreciendo una solución para el procesamiento de pagos en este entorno.</p>
+      </div>
+      
+      <!-- Ventana de Mis Compras -->
+      <div id="shoppingCartModal" class="modal">
 
-    <div class="contenido">
-        <!-- Agrega aquí el contenido de tu página -->
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. ...</p>
-    </div>
+        <div class="modal-content">
 
+          <span class="close">&times;</span>
+          <h2>Mis Compras</h2>
 
+          <div class="tabs">
+            <button class="tablink" onclick="openTab(event, 'Cart')">Contenido del Carrito</button>
+            <button class="tablink" onclick="openTab(event, 'Billing')">Dirección de Facturación</button>
+            <button class="tablink" onclick="openTab(event, 'Payment')">Método de Pago</button>
+            <button class="tablink" onclick="openTab(event, 'Confirm')">Confirmar Pedido</button>
+          </div>
 
+          <div id="Cart" class="tabcontent">
+            <h3>Contenido del Carrito</h3>
+            <table id="cartTable">
+                <thead>
+                    <tr>
+                        <th>ITEM</th>
+                        <th>QUANTITY</th>
+                        <th>UNIT PRICE</th>
+                        <th>TOTAL PRICE</th>
+                        <th></th> <!-- Esta columna es para el botón de eliminar -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <p id="itemName">Nombre del Artículo</p>
+                            <p id="itemDescription">Descripción</p>
+                        </td>
+                        <td>
+                            <input type="number" value="1" min="1">
+                        </td>
+                        <td id="itemPrice">$0.00</td>
+                        <td id="totalPrice">$0.00</td>
+                        <td><button class="remove-item-btn">X</button></td>
+                    </tr>
+              <!-- Repetir filas para más artículos -->
+                </tbody>
+            </table>
 
+            <div class="promo-code">
+                <input type="text" placeholder="Promo code?" />
+                <button class="apply-promo-btn">APPLY</button>
+            </div>
+            <div class="checkout-controls">
+                <span class="subtotal">SUBTOTAL: $45.00</span>
+                <button class="next-step-btn">NEXT STEP</button>
+            </div>
+          </div>          
+          <!-- Contenido del carrito -->
 
+        </div>
+
+        <div id="Billing" class="tabcontent">
+          <!-- Dirección de facturación -->
+        </div>
+
+        <div id="Payment" class="tabcontent">
+          <!-- Método de pago -->
+        </div>
+
+        <div id="Confirm" class="tabcontent">
+          <!-- Confirmar pedido -->
+        </div>
+
+      </div>
+
+      <div class="container products-container">
+        
+        <!-- Producto 1 -->
+        <div class="product-card">
+          <img src="/img/producto1.jpg" alt="Producto 1 - Cereal">
+          <div class="product-info">
+            
+            <h2>Producto 1 - Cereal</h2>
+            <p>Descripción breve del producto...</p>
+            <p class="price">$4.99</p>
+            
+            <button class="add-to-cart-btn" id="btnConfeti" data-producto-id="1">Agregar al carrito</button>                          
+            <script src="JavaScript/script.js" type="module"></script>          
+
+          </div>          
+        </div>
+        
+        <!-- Producto 2 -->
+        <div class="product-card">
+          <img src="producto2.jpg" alt="Producto 2 - Bebida">
+          <div class="product-info">
+            <h2>Producto 2 - Bebida</h2>
+            <p>Descripción breve del producto...</p>
+            <p class="price">$3.50</p>
+
+            <button class="add-to-cart-btn" id="btnConfeti" data-producto-id="2">Agregar al carrito</button>            
+            <script src="JavaScript/script.js" type="module"></script> 
+          
+          </div>
+        </div>
+
+        <!-- Producto 3 -->
+        <div class="product-card">
+          <img src="producto3.jpg" alt="Producto 3">
+          <div class="product-info">
+            <h2>Producto 3 - [Nombre del Producto]</h2>
+            <p>Descripción breve del producto 3...</p>
+            <p class="price">$5.25</p>
+
+            <button class="add-to-cart-btn" id="btnConfeti" data-producto-id="3">Agregar al carrito</button>            
+            <script src="JavaScript/script.js" type="module"></script>           
+
+          </div>
+        </div>
+
+        <!-- Producto 4 -->
+        <div class="product-card">
+          <img src="producto4.jpg" alt="Producto 4">
+          <div class="product-info">
+            <h2>Producto 4 - [Nombre del Producto]</h2>
+            <p>Descripción breve del producto 4...</p>
+            <p class="price">$6.00</p>
+            
+            <button class="add-to-cart-btn" id="btnConfeti" data-producto-id="2">Agregar al carrito</button>            
+            <script src="JavaScript/script.js" type="module"></script> 
+          
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+
+    <footer>
+      <div class="container footer-container">
+        <p>&copy; 2023 KioskPay. Todos los derechos reservados.</p>
+      </div>
+    </footer>
+
+    <script>
+            
+      // Abrir la ventana modal
+      var modal = document.getElementById('shoppingCartModal');
+      var btns = document.querySelectorAll('.add-to-cart-btn');
+      btns.forEach(btn => {
+        btn.onclick = function() {
+          modal.style.display = "block";
+        }
+      });
+        
+      // Cerrar la ventana modal
+      var span = document.getElementsByClassName("close")[0];
+      span.onclick = function() {
+        modal.style.display = "none";
+      }
+  
+      // Función para cambiar entre pestañas
+      function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+          tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablink");
+        for (i = 0; i < tablinks.length; i++) {
+          tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.className += " active";
+      }
+                            
+      var productos = [
+        {
+          id: 1,
+          nombre: "Producto 1 - Cereal",
+          descripcion: "Descripción breve del producto...",
+          precio: 4.99
+        },
+
+        {
+          id: 2,
+          nombre: "Producto 2 - Bebida",
+          descripcion: "Descripción breve del producto...",
+          precio: 3.50
+        },
+
+        {
+          id: 3,
+          nombre: "Producto 3 - Carnes",
+          descripcion: "Descripción breve del producto...",
+          precio: 5.25
+        },
+
+        {
+          id: 4,
+          nombre: "Producto 4 - limpieza",
+          descripcion: "Descripción breve del producto...",
+          precio: 6.00
+        },
+        
+      ];
+
+      function agregarAlCarrito(idProducto) {
+        var producto = productos.find(p => p.id === idProducto);
+        if (producto) {
+          // Asigna los valores a los campos del carrito
+          document.getElementById('itemName').textContent = producto.nombre;
+          document.getElementById('itemDescription').textContent = producto.descripcion;
+          document.getElementById('itemPrice').textContent = "$" + producto.precio.toFixed(2);
+          // Puedes asignar también el precio total y la cantidad
+        }
+      }
+
+      // Luego, vincula esta función al evento click de tus botones de "Agregar al carrito"
+      var botonesAgregar = document.querySelectorAll('.add-to-cart-btn');
+      botonesAgregar.forEach(btn => {
+        btn.onclick = function() {
+          var productoId = parseInt(btn.getAttribute('data-producto-id'));
+          agregarAlCarrito(productoId);
+          // Muestra la ventana modal del carrito
+          modal.style.display = "block";
+        };
+      });
+          
+    </script>
+    
+
+    
   </body>
+
+
 </html>
