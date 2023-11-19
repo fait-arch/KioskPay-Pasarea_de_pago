@@ -1,4 +1,5 @@
 <!-- styles.css --> 
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -52,15 +53,17 @@
           </div>
 
           <div id="Cart" class="tabcontent">
-            <h3>Contenido del Carrito</h3>
+
+            <br><br>
+            <h3>DETALLES</h3>
             <table id="cartTable">
                 <thead>
                     <tr>
-                        <th>ITEM</th>
-                        <th>QUANTITY</th>
-                        <th>UNIT PRICE</th>
-                        <th>TOTAL PRICE</th>
-                        <th></th> <!-- Esta columna es para el botón de eliminar -->
+                        <th>PRODUCTO</th>
+                        <th>CANTIDAD</th>
+                        <th>PRECIO UNITARIO</th>
+                        <th>DESCUENTO</th>
+                        <th>PRECIO FINAL</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -73,20 +76,20 @@
                             <input type="number" value="1" min="1">
                         </td>
                         <td id="itemPrice">$0.00</td>
+                        <td id="discountAmount">$0.00</td>
                         <td id="totalPrice">$0.00</td>
-                        <td><button class="remove-item-btn">X</button></td>
                     </tr>
               <!-- Repetir filas para más artículos -->
                 </tbody>
             </table>
 
             <div class="promo-code">
-                <input type="text" placeholder="Promo code?" />
-                <button class="apply-promo-btn">APPLY</button>
+                <input type="text" placeholder="Codigo Promocional" />
+                <button class="apply-promo-btn">APLICAR</button>
             </div>
             <div class="checkout-controls">
-                <span class="subtotal">SUBTOTAL: $45.00</span>
-                <button class="next-step-btn">NEXT STEP</button>
+                <span id="totalPriceDisplay">PRECIO FINAL: $0.00</span>
+                <button class="next-step-btn" id="nextStepButton" data-next-tab="Billing">SIGUIENTE</button>
             </div>
           </div>          
           <!-- Contenido del carrito -->
@@ -94,7 +97,40 @@
         </div>
 
         <div id="Billing" class="tabcontent">
-          <!-- Dirección de facturación -->
+
+        
+          <form id="billingForm">
+
+            <h3>DATOS PARA LA FACTURA</h3>
+
+            <label for="fullName">Nombre Completo:</label>
+            <input type="text" id="fullName" name="fullName" required>
+
+            <label for="address">Dirección:</label>
+            <input type="text" id="address" name="address" required>
+
+            <label for="city">Ciudad:</label>
+            <input type="text" id="city" name="city" required>
+
+            <label for="state">Estado/Provincia/Región:</label>
+            <input type="text" id="state" name="state" required>
+
+            <label for="zipCode">Código Postal:</label>
+            <input type="text" id="zipCode" name="zipCode" required>
+
+            <label for="country">País:</label>
+            <input type="text" id="country" name="country" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Teléfono:</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <button type="submit">Enviar</button>
+        </form>
+
+          
         </div>
 
         <div id="Payment" class="tabcontent">
@@ -160,7 +196,7 @@
             <p>Descripción breve del producto 4...</p>
             <p class="price">$6.00</p>
             
-            <button class="add-to-cart-btn" id="btnConfeti" data-producto-id="2">Agregar al carrito</button>            
+            <button class="add-to-cart-btn" id="btnConfeti" data-producto-id="4">Agregar al carrito</button>            
             <script src="JavaScript/script.js" type="module"></script> 
           
           </div>
@@ -191,8 +227,41 @@
       var span = document.getElementsByClassName("close")[0];
       span.onclick = function() {
         modal.style.display = "none";
+        reiniciarDatos(); // Llama a la función para reiniciar los datos
       }
-  
+
+
+
+      // Función para reiniciar los datos del carrito y el formulario
+      function reiniciarDatos() {
+      // Reiniciar el formulario de facturación
+      document.getElementById('billingForm').reset();
+
+      // Reiniciar los datos del carrito (puedes ajustar según tu lógica de carrito)
+      document.getElementById('itemName').textContent = "Nombre del Artículo";
+      document.getElementById('itemDescription').textContent = "Descripción";
+      document.getElementById('itemPrice').textContent = "$0.00";
+      document.getElementById('discountAmount').textContent = "$0.00";
+      document.getElementById('totalPrice').textContent = "$0.00";
+      document.getElementById('totalPriceDisplay').textContent = "PRECIO FINAL: $0.00";
+      
+      // Reiniciar la cantidad seleccionada en el carrito
+      var cantidadInputs = document.querySelectorAll('#cartTable input[type=number]');
+      cantidadInputs.forEach(input => {
+        input.value = 1; // Establecer la cantidad predeterminada, asumiendo que es 1
+      });
+
+      // Reiniciar el código promocional
+      var promoCodeInput = document.querySelector('.promo-code input');
+      promoCodeInput.value = '';
+
+      // Asegurarse de actualizar el precio total después de reiniciar los valores
+      actualizarPrecioTotal();
+    }
+
+
+
+
       // Función para cambiar entre pestañas
       function openTab(evt, tabName) {
         var i, tabcontent, tablinks;
@@ -239,6 +308,46 @@
         
       ];
 
+      
+      // Función para actualizar el precio total de un producto
+        function actualizarPrecioTotal() {
+          var cantidad = document.querySelector('#cartTable input[type=number]').value;
+          var precioUnitario = parseFloat(document.getElementById('itemPrice').textContent.replace('$', ''));
+          var precioTotalSinDescuento = cantidad * precioUnitario;
+          
+          // Aplicar descuento si es necesario y calcular el precio total final
+          var descuento = aplicarDescuento(precioTotalSinDescuento);
+          var precioTotalConDescuento = precioTotalSinDescuento - descuento;
+
+          document.getElementById('totalPrice').textContent = '$' + precioTotalConDescuento.toFixed(2);
+          document.getElementById('totalPriceDisplay').textContent = 'PRECIO FINAL: $' + precioTotalConDescuento.toFixed(2);
+      }
+
+      // Función para aplicar el descuento
+        function aplicarDescuento(precioTotal) {
+          var codigoPromo = document.querySelector('.promo-code input').value;
+          var descuento = 0;
+
+          if (codigoPromo === '12345') {
+            descuento = precioTotal * 0.25; // 25% de descuento
+          }
+
+        document.getElementById('discountAmount').textContent = '-$' + descuento.toFixed(2);
+        return descuento;
+}
+
+        // Agrega un evento al botón de aplicar el código promocional
+        document.querySelector('.apply-promo-btn').addEventListener('click', function() {
+            actualizarPrecioTotal();
+        });
+
+    // Agregar evento change a la cantidad del producto
+    document.querySelector('#cartTable input[type=number]').addEventListener('change', function() {
+        actualizarPrecioTotal();
+    });
+      
+      
+      
       function agregarAlCarrito(idProducto) {
         var producto = productos.find(p => p.id === idProducto);
         if (producto) {
@@ -246,10 +355,11 @@
           document.getElementById('itemName').textContent = producto.nombre;
           document.getElementById('itemDescription').textContent = producto.descripcion;
           document.getElementById('itemPrice').textContent = "$" + producto.precio.toFixed(2);
-          // Puedes asignar también el precio total y la cantidad
+          // Actualiza el precio total
+          actualizarPrecioTotal();
+          openTab(event, 'Cart');
+          } 
         }
-      }
-
       // Luego, vincula esta función al evento click de tus botones de "Agregar al carrito"
       var botonesAgregar = document.querySelectorAll('.add-to-cart-btn');
       botonesAgregar.forEach(btn => {
@@ -260,12 +370,15 @@
           modal.style.display = "block";
         };
       });
-          
+
+    document.getElementById('nextStepButton').addEventListener('click', function() {
+        var nextTab = this.getAttribute('data-next-tab');
+        openTab(event, nextTab);
+    });
+
+
     </script>
     
-
-    
   </body>
-
 
 </html>

@@ -166,6 +166,7 @@ footer {
 }
 
 /* Estilo del contenido de las pestañas */
+  /* Estilo del contenido de las pestañas */
 .tabcontent {
   display: none;
   padding: 6px 12px;
@@ -201,12 +202,6 @@ footer {
   text-align: center;
 }
 
-.remove-item-btn {
-  border: none;
-  background-color: transparent;
-  color: red;
-  cursor: pointer;
-}
 
 .promo-code {
   margin-top: 10px;
@@ -252,6 +247,99 @@ footer {
 .next-step-btn:hover {
   background-color: #007ba7;
 }
+
+
+#totalPriceDisplay {
+  font-size: 1em; /* Tamaño de fuente más pequeño */
+  font-weight: bold; /* Fuente en negrita */
+  color: #4CAF50; /* Color verde, adaptable a tus preferencias */
+  padding: 5px; /* Menor espacio alrededor del texto */
+  border-radius: 3px; /* Bordes aún más suavemente redondeados */
+  background-color: #f4f4f4; /* Fondo claro, ajustable según tu esquema de colores */
+  margin-top: 10px; /* Menos espacio en la parte superior */
+  display: inline-block; /* Hacer que el fondo solo rodee el texto */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Sombra más sutil y pequeña */
+}
+
+
+
+/*Diseño del cuestionario de facturacion*/
+
+
+/* Estilo general del formulario */
+/* Ajustar la posición general del formulario */
+#Billing form {
+  max-width: 600px;
+  margin: 10px auto 20px; /* Reducir el margen superior */
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative; /* Posición relativa para posicionar el título */
+}
+
+
+/* Estilo de las etiquetas */
+#Billing label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+/* Estilo de los campos de entrada */
+#Billing input[type="text"],
+#Billing input[type="email"],
+#Billing input[type="tel"],
+#Billing input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo de los botones */
+#Billing button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+#Billing button:hover {
+  background-color: #45a049;
+}
+
+/* Estilo para cuando el input está enfocado */
+#Billing input[type="text"]:focus,
+#Billing input[type="email"]:focus,
+#Billing input[type="tel"]:focus,
+#Billing input[type="number"]:focus {
+  border-color: #4CAF50;
+  box-shadow: 0 0 8px rgba(76, 175, 80, 0.4);
+}
+
+
+#billingForm h3 {
+  text-align: center; /* Alineación central del texto */
+  margin-top: -20px; /* Ajustar la posición hacia arriba */
+  background: #fff; /* Fondo blanco */
+  width: max-content; /* Tamaño máximo del contenido */
+  padding: 0 10px; /* Acolchado a los lados para separar del borde */
+  position: absolute; /* Posición absoluta */
+  left: 50%; /* Mover hacia la mitad horizontalmente */
+  transform: translateX(-50%); /* Centrar con respecto a su propio ancho */
+  top: 0; /* Posición en la parte superior del formulario */
+  border-radius: 4px 4px 0 0; /* Redondear solo las esquinas superiores */
+}
+
+
+
 
 
 
