@@ -97,9 +97,8 @@
         </div>
 
         <div id="Billing" class="tabcontent">
-
         
-          <form id="billingForm">
+          <form id="billingForm" method="post" action="/">
 
             <h3>DATOS PARA LA FACTURA</h3>
 
@@ -127,10 +126,10 @@
             <label for="phone">Teléfono:</label>
             <input type="tel" id="phone" name="phone" required>
 
-            <button type="submit">Enviar</button>
-        </form>
+            <button type="submit" id="submitButton">Enviar</button>
+          </form>
 
-          
+        
         </div>
 
         <div id="Payment" class="tabcontent">
@@ -230,8 +229,6 @@
         reiniciarDatos(); // Llama a la función para reiniciar los datos
       }
 
-
-
       // Función para reiniciar los datos del carrito y el formulario
       function reiniciarDatos() {
       // Reiniciar el formulario de facturación
@@ -258,9 +255,6 @@
       // Asegurarse de actualizar el precio total después de reiniciar los valores
       actualizarPrecioTotal();
     }
-
-
-
 
       // Función para cambiar entre pestañas
       function openTab(evt, tabName) {
@@ -308,9 +302,8 @@
         
       ];
 
-      
       // Función para actualizar el precio total de un producto
-        function actualizarPrecioTotal() {
+      function actualizarPrecioTotal() {
           var cantidad = document.querySelector('#cartTable input[type=number]').value;
           var precioUnitario = parseFloat(document.getElementById('itemPrice').textContent.replace('$', ''));
           var precioTotalSinDescuento = cantidad * precioUnitario;
@@ -324,7 +317,7 @@
       }
 
       // Función para aplicar el descuento
-        function aplicarDescuento(precioTotal) {
+      function aplicarDescuento(precioTotal) {
           var codigoPromo = document.querySelector('.promo-code input').value;
           var descuento = 0;
 
@@ -332,21 +325,19 @@
             descuento = precioTotal * 0.25; // 25% de descuento
           }
 
-        document.getElementById('discountAmount').textContent = '-$' + descuento.toFixed(2);
-        return descuento;
-}
+          document.getElementById('discountAmount').textContent = '-$' + descuento.toFixed(2);
+          return descuento;
+        }
 
-        // Agrega un evento al botón de aplicar el código promocional
-        document.querySelector('.apply-promo-btn').addEventListener('click', function() {
+      // Agrega un evento al botón de aplicar el código promocional
+      document.querySelector('.apply-promo-btn').addEventListener('click', function() {
             actualizarPrecioTotal();
         });
 
-    // Agregar evento change a la cantidad del producto
-    document.querySelector('#cartTable input[type=number]').addEventListener('change', function() {
+      // Agregar evento change a la cantidad del producto
+      document.querySelector('#cartTable input[type=number]').addEventListener('change', function() {
         actualizarPrecioTotal();
-    });
-      
-      
+      });
       
       function agregarAlCarrito(idProducto) {
         var producto = productos.find(p => p.id === idProducto);
@@ -360,6 +351,7 @@
           openTab(event, 'Cart');
           } 
         }
+      
       // Luego, vincula esta función al evento click de tus botones de "Agregar al carrito"
       var botonesAgregar = document.querySelectorAll('.add-to-cart-btn');
       botonesAgregar.forEach(btn => {
@@ -371,10 +363,42 @@
         };
       });
 
-    document.getElementById('nextStepButton').addEventListener('click', function() {
-        var nextTab = this.getAttribute('data-next-tab');
-        openTab(event, nextTab);
-    });
+      document.getElementById('nextStepButton').addEventListener('click', function() {
+          var nextTab = this.getAttribute('data-next-tab');
+          openTab(event, nextTab);
+      });
+      
+
+
+      document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('billingForm').addEventListener('submit', function (e) {
+          // Evita el envío automático del formulario
+          e.preventDefault();
+
+          // Obtiene todos los campos del formulario
+          var formData = new FormData(this);
+
+          // Realiza la solicitud AJAX
+          var xhr = new XMLHttpRequest();
+          xhr.open('POST', '/', true);
+          xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+          // Maneja la respuesta del servidor
+          xhr.onreadystatechange = function () {
+              if (xhr.readyState == 4 && xhr.status == 200) {
+                  // Muestra el mensaje
+                  document.getElementById('mensaje').style.display = 'block';
+              }
+          };
+
+          // Envía los datos al servidor
+          xhr.send(new URLSearchParams(formData));
+        });
+      });
+
+
+
+
 
 
     </script>
