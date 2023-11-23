@@ -131,7 +131,7 @@ footer {
   margin: 10% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 50%;
+  width: auto;
 }
 
 .close {
@@ -337,6 +337,24 @@ footer {
   top: 0; /* Posición en la parte superior del formulario */
   border-radius: 4px 4px 0 0; /* Redondear solo las esquinas superiores */
 }
+
+
+
+/* ... Borrar desde aqui si falla ... */
+
+
+
+.center-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: #fff; /* Fondo blanco para el contenedor */
+}
+
+
+
+
 
 
 
