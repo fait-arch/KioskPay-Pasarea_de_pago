@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"html/template"
 	"net/http"
@@ -8,48 +9,21 @@ import (
 	"path/filepath"
 )
 
-// CONECTAR AL INDEX
-func handler(w http.ResponseWriter, r *http.Request) {
-	if r.Method == "POST" {
-		// Manejar la solicitud POST
-		err := r.ParseForm()
-		if err != nil {
-			http.Error(w, "Error al analizar los datos del formulario", http.StatusInternalServerError)
-			return
-		}
-
-		// Realiza acciones con los datos, por ejemplo, imprímelos en la terminal
-		fmt.Println("Datos del formulario:")
-		fmt.Println("Nombre Completo:", r.FormValue("fullName"))
-		fmt.Println("Dirección:", r.FormValue("address"))
-		fmt.Println("Ciudad:", r.FormValue("city"))
-		fmt.Println("Reguion:", r.FormValue("state"))
-		fmt.Println("Codigo Postal:", r.FormValue("zipCode"))
-		fmt.Println("Pais:", r.FormValue("country"))
-		fmt.Println("Email:", r.FormValue("email"))
-		fmt.Println("Celular:", r.FormValue("phone"))
-
-		// Responder al cliente (puedes enviar un JSON u otro tipo de respuesta si es necesario)
-		w.WriteHeader(http.StatusOK)
-		return
-	}
-
-	// Manejar la solicitud GET (cargar el formulario)
-	htmlContent, err := readFile("templates/index.html")
-	if err != nil {
-		http.Error(w, "Error al leer el archivo HTML", http.StatusInternalServerError)
-		return
-	}
-
-	tmpl, err := template.New("index").Parse(htmlContent)
-	if err != nil {
-		http.Error(w, "Error al analizar el archivo HTML", http.StatusInternalServerError)
-		return
-	}
-
-	tmpl.Execute(w, nil)
+// FUNCIONES ASINCRONICAS
+//
+//	Estructura de los datos del formulario
+type DatosFormulario struct {
+	NombreCompleto string `json:"fullName"`
+	Direccion      string `json:"address"`
+	Ciudad         string `json:"city"`
+	Region         string `json:"state"`
+	CodigoPostal   string `json:"zipCode"`
+	Pais           string `json:"country"`
+	Email          string `json:"email"`
+	Celular        string `json:"phone"`
 }
 
+// Leer ruta del archivo de texto
 func readFile(filename string) (string, error) {
 
 	// Obtiene la ruta absoluta del archivo
@@ -58,7 +32,6 @@ func readFile(filename string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-
 	// Lee el contenido del archivo
 	content, err := os.ReadFile(filePath)
 	if err != nil {
@@ -68,6 +41,61 @@ func readFile(filename string) (string, error) {
 	return string(content), nil
 }
 
+// CONEXION CON EL INDEX
+func handler(w http.ResponseWriter, r *http.Request) {
+
+	//Accion de ingreso de datos del formulario
+	if r.Method == "POST" {
+		// Manejar la solicitud POST
+		err := r.ParseForm()
+		if err != nil {
+			http.Error(w, "Error al analizar los datos del formulario", http.StatusInternalServerError)
+			return
+		}
+
+		// Crear una instancia de DatosFormulario y asignar los valores
+		datos := DatosFormulario{
+			NombreCompleto: r.FormValue("fullName"),
+			Direccion:      r.FormValue("address"),
+			Ciudad:         r.FormValue("city"),
+			Region:         r.FormValue("state"),
+			CodigoPostal:   r.FormValue("zipCode"),
+			Pais:           r.FormValue("country"),
+			Email:          r.FormValue("email"),
+			Celular:        r.FormValue("phone"),
+		}
+		// Conformar uso corecto de la estructura a JSON
+		respuestaJSON, err := json.Marshal(datos)
+		if err != nil {
+			http.Error(w, "Error al convertir los datos a JSON", http.StatusInternalServerError)
+			return
+		}
+		// Imprir en la terminal el JSON
+		fmt.Println("Datos del formulario:")
+		fmt.Printf("%+v\n", datos)
+
+		// Responder al cliente con la respuesta JSON
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		w.Write(respuestaJSON)
+		return
+	}
+
+	// Manejar la solicitud GET (cargar el formulario)
+	htmlContent, err := readFile("templates/index.html")
+	if err != nil {
+		http.Error(w, "Error al leer el archivo HTML :,( )", http.StatusInternalServerError)
+		return
+	}
+	tmpl, err := template.New("index").Parse(htmlContent)
+	if err != nil {
+		http.Error(w, "Error al analizar el archivo HTML :( )", http.StatusInternalServerError)
+		return
+	}
+	tmpl.Execute(w, nil)
+}
+
+// MAIN
 func main() {
 	http.HandleFunc("/", handler)
 	// Manejador para los archivos estáticos (CSS,HTML y JavaScript)
