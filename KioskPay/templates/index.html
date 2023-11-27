@@ -1,33 +1,22 @@
 <!-- templates --> 
-
 <!DOCTYPE html>
 <html lang="es">
-
-
   <head>
     <meta charset="UTF-8" />    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/styles.css" />
     <script src="/static/script.js" type="module"></script>
-
     <title>KioskPay</title>
     <link rel="icon" href="Image/favicon/FabiconFelizCumpleAños.ico" type="image/png">
     <link rel="icon" href="/templates/img/logo_KioskPay.ico" type="image/x-icon">
-
-
-
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gsX|tatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
   
   </head>
-
-
   <body>
-
     <header>
-
     </header>
   
     <main>
@@ -39,21 +28,16 @@
       
       <!-- Ventana de Mis Compras -->
       <div id="shoppingCartModal" class="modal">
-
         <div class="modal-content">
-
           <span class="close">&times;</span>
           <h2>Mis Compras</h2>
-
           <div class="tabs">
             <button class="tablink" onclick="openTab(event, 'Cart')">Contenido del Carrito</button>
             <button class="tablink" onclick="openTab(event, 'Billing')">Dirección de Facturación</button>
             <button class="tablink" onclick="openTab(event, 'Payment')">Método de Pago</button>
             <button class="tablink" onclick="openTab(event, 'Confirm')">Confirmar Pedido</button>
           </div>
-
           <div id="Cart" class="tabcontent">
-
             <br><br>
             <h3>DETALLES</h3>
             <table id="cartTable">
@@ -82,7 +66,6 @@
               <!-- Repetir filas para más artículos -->
                 </tbody>
             </table>
-
             <div class="promo-code">
                 <input type="text" placeholder="Codigo Promocional" />
                 <button class="apply-promo-btn">APLICAR</button>
@@ -93,129 +76,53 @@
             </div>
           </div>          
           <!-- Contenido del carrito -->
-
         </div>
-
         <div id="Billing" class="tabcontent">
         
           <form id="billingForm" method="post" action="/">
-
             <h3>DATOS PARA LA FACTURA</h3>
-
             <label for="fullName">Nombre Completo:</label>
             <input type="text" id="fullName" name="fullName" required>
-
             <label for="address">Dirección:</label>
             <input type="text" id="address" name="address" required>
-
             <label for="city">Ciudad:</label>
             <input type="text" id="city" name="city" required>
-
             <label for="state">Estado/Provincia/Región:</label>
             <input type="text" id="state" name="state" required>
-
             <label for="zipCode">Código Postal:</label>
             <input type="text" id="zipCode" name="zipCode" required>
-
             <label for="country">País:</label>
             <input type="text" id="country" name="country" required>
-
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
-
             <label for="phone">Teléfono:</label>
             <input type="tel" id="phone" name="phone" required>
-
             <button type="submit" id="submitButton">Enviar</button>
           </form>
-
         
         </div>
 
         <div id="Payment" class="tabcontent">
+
           <!-- Método de pago -->
-<<<<<<< HEAD
-          <style>
-            body {
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              height: 100vh;
-              background-color: #f0f0f0;
-            }
-          
-            #paymentForm {
-              background-color: white;
-              padding: 20px;
-              border-radius: 10px;
-            }
-            h3 {
-      text-align: center;
-  }
-          </style>
-          <form id="paymentForm">
-            <h3>Método de Pago</h3>
-          
-            <label for="name">Nombre en la tarjeta:</label>
-            <input type="text" id="name" name="name" required>
-          
-            <label for="number">Número de tarjeta:</label>
-            <input type="text" id="number" name="number" required>
-          
-            <label for="expiryMonth">Mes de expiración:</label>
-            <input type="text" id="expiryMonth" name="expiryMonth" required>
-          
-            <label for="expiryYear">Año de expiración:</label>
-            <input type="text" id="expiryYear" name="expiryYear" required>
-          
-            <label for="cvv">CVV:</label>
-            <input type="text" id="cvv" name="cvv" required>
-          
-            <button type="submit" id="submitButton">Enviar</button>
-          </form>
-          
-          <script>
-          document.getElementById('paymentForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-          
-            var data = {
-              name: document.getElementById('name').value,
-              number: document.getElementById('number').value,
-              expiryMonth: document.getElementById('expiryMonth').value,
-              expiryYear: document.getElementById('expiryYear').value,
-              cvv: document.getElementById('cvv').value,
-            };
-          
-            fetch('/getPaymentToken', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify(data),
-            })
-            .then(response => response.json())
-            .then(data => {
-              console.log('Token:', data.token);
-            })
-            .catch((error) => {
-              console.error('Error:', error);
-            });
-          });
-          </script>
           <div class="center-content">
             <button class="next-step-btn" onclick="openTab(event, 'Confirm')">SIGUIENTE</button>
           </div>
-=======
->>>>>>> parent of 58ad004 (DiseñoInterfazVersion3)
 
         </div>
 
         <div id="Confirm" class="tabcontent">
           <!-- Confirmar pedido -->
+
+          <div class="center-content">
+
+            <button class="finalize-purchase-btn">Finalizar Compra</button>
+
+          </div>
+
         </div>
 
       </div>
-
       <div class="container products-container">
         
         <!-- Producto 1 -->
@@ -229,7 +136,6 @@
             
             <button class="add-to-cart-btn" id="btnConfeti" data-producto-id="1">Agregar al carrito</button>                          
             <script src="JavaScript/script.js" type="module"></script>          
-
           </div>          
         </div>
         
@@ -240,13 +146,11 @@
             <h2>Producto 2 - Bebida</h2>
             <p>Descripción breve del producto...</p>
             <p class="price">$3.50</p>
-
             <button class="add-to-cart-btn" id="btnConfeti" data-producto-id="2">Agregar al carrito</button>            
             <script src="JavaScript/script.js" type="module"></script> 
           
           </div>
         </div>
-
         <!-- Producto 3 -->
         <div class="product-card">
           <img src="./templates/img/producto3.jpg" alt="Producto 3 - Carnes">
@@ -254,13 +158,10 @@
             <h2>Producto 3 - [Nombre del Producto]</h2>
             <p>Descripción breve del producto 3...</p>
             <p class="price">$5.25</p>
-
             <button class="add-to-cart-btn" id="btnConfeti" data-producto-id="3">Agregar al carrito</button>            
             <script src="JavaScript/script.js" type="module"></script>           
-
           </div>
         </div>
-
         <!-- Producto 4 -->
         <div class="product-card">
           <img src="/templates/img/producto4.jpg" alt="Producto 4 - limpieza">
@@ -274,17 +175,13 @@
           
           </div>
         </div>
-
       </div>
-
     </main>
-
     <footer>
       <div class="container footer-container">
         <p>&copy; 2023 KioskPay. Todos los derechos reservados.</p>
       </div>
     </footer>
-
     <script>
             
       // Abrir la ventana modal
@@ -302,12 +199,10 @@
         modal.style.display = "none";
         reiniciarDatos(); // Llama a la función para reiniciar los datos
       }
-
       // Función para reiniciar los datos del carrito y el formulario
       function reiniciarDatos() {
       // Reiniciar el formulario de facturación
       document.getElementById('billingForm').reset();
-
       // Reiniciar los datos del carrito (puedes ajustar según tu lógica de carrito)
       document.getElementById('itemName').textContent = "Nombre del Artículo";
       document.getElementById('itemDescription').textContent = "Descripción";
@@ -321,15 +216,12 @@
       cantidadInputs.forEach(input => {
         input.value = 1; // Establecer la cantidad predeterminada, asumiendo que es 1
       });
-
       // Reiniciar el código promocional
       var promoCodeInput = document.querySelector('.promo-code input');
       promoCodeInput.value = '';
-
       // Asegurarse de actualizar el precio total después de reiniciar los valores
       actualizarPrecioTotal();
     }
-
       // Función para cambiar entre pestañas
       function openTab(evt, tabName) {
         var i, tabcontent, tablinks;
@@ -352,21 +244,18 @@
           descripcion: "Descripción breve del producto...",
           precio: 4.99
         },
-
         {
           id: 2,
           nombre: "Producto 2 - Bebida",
           descripcion: "Descripción breve del producto...",
           precio: 3.50
         },
-
         {
           id: 3,
           nombre: "Producto 3 - Carnes",
           descripcion: "Descripción breve del producto...",
           precio: 5.25
         },
-
         {
           id: 4,
           nombre: "Producto 4 - limpieza",
@@ -375,7 +264,6 @@
         },
         
       ];
-
       // Función para actualizar el precio total de un producto
       function actualizarPrecioTotal() {
           var cantidad = document.querySelector('#cartTable input[type=number]').value;
@@ -385,29 +273,23 @@
           // Aplicar descuento si es necesario y calcular el precio total final
           var descuento = aplicarDescuento(precioTotalSinDescuento);
           var precioTotalConDescuento = precioTotalSinDescuento - descuento;
-
           document.getElementById('totalPrice').textContent = '$' + precioTotalConDescuento.toFixed(2);
           document.getElementById('totalPriceDisplay').textContent = 'PRECIO FINAL: $' + precioTotalConDescuento.toFixed(2);
       }
-
       // Función para aplicar el descuento
       function aplicarDescuento(precioTotal) {
           var codigoPromo = document.querySelector('.promo-code input').value;
           var descuento = 0;
-
           if (codigoPromo === '12345') {
             descuento = precioTotal * 0.25; // 25% de descuento
           }
-
           document.getElementById('discountAmount').textContent = '-$' + descuento.toFixed(2);
           return descuento;
         }
-
       // Agrega un evento al botón de aplicar el código promocional
       document.querySelector('.apply-promo-btn').addEventListener('click', function() {
             actualizarPrecioTotal();
         });
-
       // Agregar evento change a la cantidad del producto
       document.querySelector('#cartTable input[type=number]').addEventListener('change', function() {
         actualizarPrecioTotal();
@@ -436,27 +318,21 @@
           modal.style.display = "block";
         };
       });
-
       document.getElementById('nextStepButton').addEventListener('click', function() {
           var nextTab = this.getAttribute('data-next-tab');
           openTab(event, nextTab);
       });
       
-
-
       document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('billingForm').addEventListener('submit', function (e) {
           // Evita el envío automático del formulario
           e.preventDefault();
-
           // Obtiene todos los campos del formulario
           var formData = new FormData(this);
-
           // Realiza la solicitud AJAX
           var xhr = new XMLHttpRequest();
           xhr.open('POST', '/', true);
           xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
           // Maneja la respuesta del servidor
           xhr.onreadystatechange = function () {
               if (xhr.readyState == 4 && xhr.status == 200) {
@@ -464,19 +340,13 @@
                   document.getElementById('mensaje').style.display = 'block';
               }
           };
-
           // Envía los datos al servidor
           xhr.send(new URLSearchParams(formData));
         });
       });
-
-
-
-
-
-
     </script>
-    
+
   </body>
 
+</html>
 </html>
