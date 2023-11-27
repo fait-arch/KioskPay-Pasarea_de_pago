@@ -133,75 +133,7 @@
         </div>
 
         <div id="Payment" class="tabcontent">
-          
           <!-- Método de pago -->
-          <style>
-            body {
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              height: 100vh;
-              background-color: #f0f0f0;
-            }
-          
-            #paymentForm {
-              background-color: white;
-              padding: 20px;
-              border-radius: 10px;
-            }
-            h3 {
-      text-align: center;
-  }
-          </style>
-          <form id="paymentForm">
-            <h3>Método de Pago</h3>
-          
-            <label for="name">Nombre en la tarjeta:</label>
-            <input type="text" id="name" name="name" required>
-          
-            <label for="number">Número de tarjeta:</label>
-            <input type="text" id="number" name="number" required>
-          
-            <label for="expiryMonth">Mes de expiración:</label>
-            <input type="text" id="expiryMonth" name="expiryMonth" required>
-          
-            <label for="expiryYear">Año de expiración:</label>
-            <input type="text" id="expiryYear" name="expiryYear" required>
-          
-            <label for="cvv">CVV:</label>
-            <input type="text" id="cvv" name="cvv" required>
-          
-            <button type="submit" id="submitButton">Enviar</button>
-          </form>
-          
-          <script>
-          document.getElementById('paymentForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-          
-            var data = {
-              name: document.getElementById('name').value,
-              number: document.getElementById('number').value,
-              expiryMonth: document.getElementById('expiryMonth').value,
-              expiryYear: document.getElementById('expiryYear').value,
-              cvv: document.getElementById('cvv').value,
-            };
-          
-            fetch('/getPaymentToken', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify(data),
-            })
-            .then(response => response.json())
-            .then(data => {
-              console.log('Token:', data.token);
-            })
-            .catch((error) => {
-              console.error('Error:', error);
-            });
-          });
-          </script>
           <div class="center-content">
             <button class="next-step-btn" onclick="openTab(event, 'Confirm')">SIGUIENTE</button>
           </div>
@@ -210,13 +142,6 @@
 
         <div id="Confirm" class="tabcontent">
           <!-- Confirmar pedido -->
-          
-          <div class="center-content">
-
-            <button class="finalize-purchase-btn">Finalizar Compra</button>
-          
-          </div>
-
         </div>
 
       </div>
