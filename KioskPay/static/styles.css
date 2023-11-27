@@ -335,6 +335,65 @@ footer {
 }
 
 
+/* Estilo general del formulario de pago */
+
+
+#Payment form {
+  max-width: 600px;
+  margin: 10px auto 20px; /* Centrado y margen similar a otras pestañas */
+  padding: 20px;
+  background: #fff; /* Fondo blanco como en otras pestañas */
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  position: relative; /* Posición relativa para posicionar elementos */
+}
+
+/* Estilo de las etiquetas en el formulario de pago */
+#Payment label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+/* Estilo de los campos de entrada en el formulario de pago */
+#Payment input[type="text"],
+#Payment input[type="email"],
+#Payment input[type="tel"],
+#Payment input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+
+
+/* Estilo para cuando el input está enfocado en el formulario de pago */
+#Payment input[type="text"]:focus,
+#Payment input[type="email"]:focus,
+#Payment input[type="tel"]:focus,
+#Payment input[type="number"]:focus {
+  border-color: #4CAF50; /* Verde, para mantener la consistencia */
+  box-shadow: 0 0 8px rgba(76, 175, 80, 0.4);
+}
+
+/* Título del formulario de pago */
+#Payment h3 {
+  text-align: center; 
+  margin-top: -20px; 
+  background: #fff; 
+  width: max-content; 
+  padding: 0 10px; 
+  position: absolute; 
+  left: 50%; 
+  transform: translateX(-50%);
+  top: 0; 
+  border-radius: 4px 4px 0 0;
+}
+
 
 
 

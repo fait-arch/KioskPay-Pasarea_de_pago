@@ -134,13 +134,34 @@
 
         <div id="Payment" class="tabcontent">
           <!-- Método de pago -->
-          <div class="center-content">
-            <button class="next-step-btn" onclick="openTab(event, 'Confirm')">SIGUIENTE</button>
-          </div>
+          <form id="paymentForm" method="post" action="/">
+            <h3>MÉTODO DE PAGO</h3>
+
+            <label for="cardName">Nombre en la Tarjeta:</label>
+            <input type="text" id="cardName" name="cardName" required>
+
+            <label for="cardNumber">Número de la Tarjeta:</label>
+            <input type="text" id="cardNumber" name="cardNumber" required pattern="\d{16}" title="Debe contener 16 dígitos" maxlength="16" minlength="16" oninput="validateLength(this, 16)">
+
+            <label for="expiryDate">Fecha de Expiración (MM/AA):</label>
+            <input type="text" id="expiryDate" name="expiryDate" required placeholder="MM/AA" maxlength="5" oninput="formatExpiryDate(this)">
+
+            <label for="cvv">CVV:</label>
+            <input type="text" id="cvv" name="cvv" required pattern="\d{3}" title="Debe ser un número de 3 dígitos" maxlength="3" minlength="3" oninput="validateLength(this, 3)">
+
+            <button type="submit" id="submitPaymentButton">Enviar</button>
+          </form>
+
+
 
         </div>
 
         <div id="Confirm" class="tabcontent">
+          <div class="center-content">
+
+            <button class="finalize-purchase-btn">Finalizar Compra</button>
+
+          </div>
           <!-- Confirmar pedido -->
         </div>
 
@@ -401,7 +422,27 @@
       });
 
 
+      //Funciones de Método de Pago
 
+      //Mes y año de caducidad de la tarjeta ingresada
+      function formatExpiryDate(input) {
+        var value = input.value;
+        var formattedValue = value.replace(/\D/g, '').substring(0, 4);
+
+        // Añadir la barra inclinada después del mes
+        if (formattedValue.length > 2) {
+          formattedValue = formattedValue.substring(0, 2) + '/' + formattedValue.substring(2);
+        }
+
+        input.value = formattedValue;
+      }
+
+      //El formulario obliga al usuario a ingresar 16 digitos de la tarjeta y 3 para el CVV
+      function validateLength(input, length) {
+        if (input.value.length > length) {
+        input.value = input.value.substring(0, length);
+        }
+      }
 
 
 
