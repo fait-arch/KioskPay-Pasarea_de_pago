@@ -1,0 +1,395 @@
+/* styles.css */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    box-sizing: border-box;
+  }
+  .container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+    padding: 20px 0 100px;
+    text-align: center;
+  }
+  header {
+    background-color: #FBD025; /* Amarillo pastel */
+    color: #333;
+    padding: 20px 0 50px 0;
+    text-align: center;
+  }
+  .header-container h1 {
+    margin-bottom: 0.5em;
+    font-size: 3em;
+    font-weight: bold;
+    color: #4a4a4a; /* Gris oscuro */
+  }
+  .header-container h2 {
+    margin-top: 0;
+    margin-bottom: 1em;
+    font-size: 1.5em;
+    font-weight: normal;
+    color: #6a6a6a; /* Gris medio */
+  }
+  .header-container p {
+    margin-top: 0;
+    font-size: 1.3em;
+    line-height: 1.5;
+    color: #8a8a8a; /* Gris claro */
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  main {
+    background-color: #f4f4f4;
+    padding: 50px 0;
+  }
+  .price {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #4CAF50; /* Color verde para el precio */
+    margin: 10px 0;
+  }
+  .product-card img {
+    width: 100%; /* Ajusta este valor para cambiar el tamaño */
+    height: auto;
+    max-width: 200px; /* Nuevo máximo de ancho */
+    display: block; /* Centra la imagen */
+    margin: 0 auto; /* Centra la imagen horizontalmente */
+  }
+  .product-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .product-card img {
+    width: 100%;
+    height: auto;
+  }
+  .product-info {
+    padding: 20px;
+  }
+  .product-info h2 {
+    color: #333;
+  }
+  .product-info p {
+    color: #555;
+  }
+  button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  button:hover {
+    background-color: #45a049;
+  }
+  footer {
+    background-color: #FBD025; /* Color amarillo pastel */
+    color: #333;
+    text-align: center;
+    padding: 10px 0;
+  }
+  /* Estilo de la ventana modal */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  .modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: auto;
+  }
+  
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  /* Estilo de las pestañas */
+  .tablink {
+    background-color: #555;
+    color: white;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    font-size: 17px;
+    width: 25%;
+  }
+  
+  .tablink:hover {
+    background-color: #777;
+  }
+  
+  /* Estilo del contenido de las pestañas */
+    /* Estilo del contenido de las pestañas */
+  .tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+  }
+  
+  #cartTable {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  #cartTable thead {
+    background-color: #f4f4f4;
+  }
+  
+  #cartTable th, #cartTable td {
+    text-align: left;
+    padding: 8px;
+    border: 1px solid #ddd;
+  }
+  
+  #cartTable th {
+    text-align: center;
+  }
+  
+  #cartTable td {
+    text-align: center;
+  }
+  
+  
+  .promo-code {
+    margin-top: 10px;
+    text-align: right;
+  }
+  
+  .promo-code input {
+    padding: 8px;
+    margin-right: 5px;
+  }
+  
+  .apply-promo-btn {
+    padding: 10px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .apply-promo-btn:hover {
+    background-color: #45a049;
+  }
+  
+  .checkout-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+  }
+  
+  .subtotal {
+    font-weight: bold;
+  }
+  
+  .next-step-btn {
+    padding: 10px 20px;
+    background-color: #008CBA;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .next-step-btn:hover {
+    background-color: #007ba7;
+  }
+  
+  
+  #totalPriceDisplay {
+    font-size: 1em; /* Tamaño de fuente más pequeño */
+    font-weight: bold; /* Fuente en negrita */
+    color: #4CAF50; /* Color verde, adaptable a tus preferencias */
+    padding: 5px; /* Menor espacio alrededor del texto */
+    border-radius: 3px; /* Bordes aún más suavemente redondeados */
+    background-color: #f4f4f4; /* Fondo claro, ajustable según tu esquema de colores */
+    margin-top: 10px; /* Menos espacio en la parte superior */
+    display: inline-block; /* Hacer que el fondo solo rodee el texto */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Sombra más sutil y pequeña */
+  }
+  
+  
+  
+  /*Diseño del cuestionario de facturacion*/
+  
+  
+  /* Estilo general del formulario */
+  /* Ajustar la posición general del formulario */
+  #Billing form {
+    max-width: 600px;
+    margin: 10px auto 20px; /* Reducir el margen superior */
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative; /* Posición relativa para posicionar el título */
+  }
+  
+  
+  /* Estilo de las etiquetas */
+  #Billing label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  /* Estilo de los campos de entrada */
+  #Billing input[type="text"],
+  #Billing input[type="email"],
+  #Billing input[type="tel"],
+  #Billing input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Estilo de los botones */
+  #Billing button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  #Billing button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Estilo para cuando el input está enfocado */
+  #Billing input[type="text"]:focus,
+  #Billing input[type="email"]:focus,
+  #Billing input[type="tel"]:focus,
+  #Billing input[type="number"]:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.4);
+  }
+  
+  
+  #billingForm h3 {
+    text-align: center; /* Alineación central del texto */
+    margin-top: -20px; /* Ajustar la posición hacia arriba */
+    background: #fff; /* Fondo blanco */
+    width: max-content; /* Tamaño máximo del contenido */
+    padding: 0 10px; /* Acolchado a los lados para separar del borde */
+    position: absolute; /* Posición absoluta */
+    left: 50%; /* Mover hacia la mitad horizontalmente */
+    transform: translateX(-50%); /* Centrar con respecto a su propio ancho */
+    top: 0; /* Posición en la parte superior del formulario */
+    border-radius: 4px 4px 0 0; /* Redondear solo las esquinas superiores */
+  }
+  
+  
+  .center-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff; /* Fondo blanco para el contenedor */
+  }
+  
+  
+  /* Estilo general del formulario de pago */
+  
+  
+  #Payment form {
+    max-width: 600px;
+    margin: 10px auto 20px; /* Centrado y margen similar a otras pestañas */
+    padding: 20px;
+    background: #fff; /* Fondo blanco como en otras pestañas */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    position: relative; /* Posición relativa para posicionar elementos */
+  }
+  
+  /* Estilo de las etiquetas en el formulario de pago */
+  #Payment label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  /* Estilo de los campos de entrada en el formulario de pago */
+  #Payment input[type="text"],
+  #Payment input[type="email"],
+  #Payment input[type="tel"],
+  #Payment input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  
+  
+  /* Estilo para cuando el input está enfocado en el formulario de pago */
+  #Payment input[type="text"]:focus,
+  #Payment input[type="email"]:focus,
+  #Payment input[type="tel"]:focus,
+  #Payment input[type="number"]:focus {
+    border-color: #4CAF50; /* Verde, para mantener la consistencia */
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.4);
+  }
+  
+  /* Título del formulario de pago */
+  #Payment h3 {
+    text-align: center; 
+    margin-top: -20px; 
+    background: #fff; 
+    width: max-content; 
+    padding: 0 10px; 
+    position: absolute; 
+    left: 50%; 
+    transform: translateX(-50%);
+    top: 0; 
+    border-radius: 4px 4px 0 0;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
