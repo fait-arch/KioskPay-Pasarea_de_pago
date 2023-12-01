@@ -3,7 +3,8 @@
 package main
 
 import (
-	"KioskPay/pkg/CreateUser"
+	//CreateProduct "KioskPay/pkg"
+	CreateUser "KioskPay/pkg/CreateUser"
 	"fmt"
 	"net/http"
 	"os"
@@ -15,7 +16,7 @@ import (
 func main() {
 
 	//------------------------------
-	//	LEVANTAMIENTO DE POCKET BASE
+	//  LEVANTAMIENTO DE POCKET BASE
 	//------------------------------
 	// Ruta al ejecutable
 	executablePath := ".\\db\\pocketbase.exe"
@@ -34,33 +35,29 @@ func main() {
 		}
 	}()
 	/*
-		//-------------------
-		//	ENVIO A PRODUCTS
-		//-------------------
-		product := &CreateProduct.Product{
-			ProductImg:        "",
-			ProductName:       "",
-			ProductPrice:      "",
-			ProductDescripion: "",
-		}
+	   //-------------------
+	   //  ENVIO A PRODUCTS
+	   //-------------------
+	   product := &CreateProduct.Product{
+	       ProductImg:        "",
+	       ProductName:       "",
+	       ProductPrice:      "",
+	       ProductDescripion: "",
+	   }
 
-		resp, err := CreateProduct.CreateProduct(product)
-		if err != nil {
-			fmt.Println("Error:", err)
-			return
-		}
-		defer resp.Body.Close()
-		fmt.Println(product)
-		fmt.Println("Product created successfully")
+
+	   resp, err := CreateProduct.CreateProduct(product)
+	   if err != nil {
+	       fmt.Println("Error:", err)
+	       return
+	   }
+	   defer resp.Body.Close()
+	   fmt.Println(product)
+	   fmt.Println("Product created successfully")
 	*/
-	//--------------------------------------------
-	//	LEER DATOS DE FORMULARIO DE USERS
-	//--------------------------------------------
-
-	http.HandleFunc("/submit", CreateUser.SubmitHandler)
 
 	//--------------------------------------------
-	//	CREACION DE UN SERVIDOR WEB SIMPLE CON GIN
+	//  CREACION DE UN SERVIDOR WEB SIMPLE CON GIN
 	//--------------------------------------------
 
 	gin.SetMode(gin.ReleaseMode)
@@ -74,6 +71,15 @@ func main() {
 	// Ruta para la página principal
 	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.html", gin.H{})
+	})
+
+	//------------------------------------
+	//  LEER DATOS DE FORMULARIO DE USERS
+	//------------------------------------
+	// Ruta POST para manejar la entrada del formulario
+	router.POST("/", func(c *gin.Context) {
+		CreateUser.CreateUser(c)
+		c.Redirect(http.StatusFound, "/") // Redirige de vuelta a la página principal después de enviar
 	})
 
 	// Configurar la confianza en los proxies
