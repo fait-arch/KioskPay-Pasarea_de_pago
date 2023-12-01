@@ -343,6 +343,12 @@
         if (codigoPromo === '12345') {
           descuento = precioTotal * 0.25; // 25% de descuento
         }
+        if (codigoPromo === 'JuanDaCode') {
+          descuento = precioTotal * 0; // 0% de descuento
+        }
+        if (codigoPromo === 'JuanDaCode') {
+          descuento = precioTotal * 0; // 0% de descuento
+        }
 
         document.getElementById('discountAmount').textContent = '-$' + descuento.toFixed(2);
         return descuento;
@@ -385,33 +391,6 @@
         var nextTab = this.getAttribute('data-next-tab');
         openTab(event, nextTab);
       });
-      
-      document.addEventListener('DOMContentLoaded', function () {
-        document.getElementById('billingForm').addEventListener('submit', function (e) {
-          // Evita el envío automático del formulario
-          e.preventDefault();
-
-          // Obtiene todos los campos del formulario
-          var formData = new FormData(this);
-
-          // Realiza la solicitud AJAX
-          var xhr = new XMLHttpRequest();
-          xhr.open('POST', '/', true);
-          xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-          // Maneja la respuesta del servidor
-          xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-              // Muestra el mensaje
-              document.getElementById('mensaje').style.display = 'block';
-            }
-          };
-
-          // Envía los datos al servidor
-          xhr.send(new URLSearchParams(formData));
-        });
-      });
-
 
       //Mes y año de caducidad de la tarjeta ingresada
       function formatExpiryDate(input) {
