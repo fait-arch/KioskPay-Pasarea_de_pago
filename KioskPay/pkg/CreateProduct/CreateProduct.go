@@ -9,8 +9,10 @@ import (
 
 // Definimos la estructura JSON de Collections "products"
 type Product struct {
-	ProductName  string `json:"product_Name"`
-	ProductPrice string `json:"product_Price"`
+	ProductImg        string `json:"product_Img"`
+	ProductName       string `json:"product_Name"`
+	ProductPrice      string `json:"product_Price"`
+	ProductDescripion string `json:"product_descripion"`
 }
 
 func CreateProduct(product *Product) (*http.Response, error) {

@@ -3,7 +3,7 @@
 package main
 
 import (
-	CreateProduct "KioskPay/pkg"
+	"KioskPay/pkg/CreateUser"
 	"fmt"
 	"net/http"
 	"os"
@@ -33,23 +33,31 @@ func main() {
 			fmt.Printf("Error al ejecutar el comando: %v\n", err)
 		}
 	}()
+	/*
+		//-------------------
+		//	ENVIO A PRODUCTS
+		//-------------------
+		product := &CreateProduct.Product{
+			ProductImg:        "",
+			ProductName:       "",
+			ProductPrice:      "",
+			ProductDescripion: "",
+		}
 
-	//-------------------
-	//	ENVIO A PRODUCTS
-	//-------------------
-	product := &CreateProduct.Product{
-		ProductName:  "test_main.go",
-		ProductPrice: "8.0",
-	}
+		resp, err := CreateProduct.CreateProduct(product)
+		if err != nil {
+			fmt.Println("Error:", err)
+			return
+		}
+		defer resp.Body.Close()
+		fmt.Println(product)
+		fmt.Println("Product created successfully")
+	*/
+	//--------------------------------------------
+	//	LEER DATOS DE FORMULARIO DE USERS
+	//--------------------------------------------
 
-	resp, err := CreateProduct.CreateProduct(product)
-	if err != nil {
-		fmt.Println("Error:", err)
-		return
-	}
-	defer resp.Body.Close()
-	fmt.Println(product)
-	fmt.Println("Product created successfully")
+	http.HandleFunc("/submit", CreateUser.SubmitHandler)
 
 	//--------------------------------------------
 	//	CREACION DE UN SERVIDOR WEB SIMPLE CON GIN
