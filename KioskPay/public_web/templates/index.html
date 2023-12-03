@@ -99,7 +99,7 @@
         <!-- Dirrecion de Facturacion -->
         <div id="Billing" class="tabcontent">
         
-          <form id="billingForm" method="post" action="/">
+          <form id="billingForm" method="post">
 
             <h3>DATOS PARA LA FACTURA</h3>
 
@@ -124,7 +124,7 @@
             <label for="phone">Teléfono:</label>
             <input type="tel" id="phone" name="phone" required>
 
-            <button type="submit" id="submitButton">Enviar</button>
+            <button type="button" id="submitButton">Enviar</button>
           </form>
 
         </div>
@@ -411,6 +411,26 @@
         input.value = input.value.substring(0, length);
         }
       }
+
+      //Funcion para que el boton enviar de la pestaña Dirección de Facturación envié datos y pase a la siguiente pestaña
+      document.getElementById('submitButton').addEventListener('click', function() {
+        var billingForm = document.getElementById('billingForm');
+        var formData = new FormData(billingForm);
+
+        // Enviar datos al servidor en Go
+        fetch('/', {
+          method: 'POST',
+          body: formData
+        }).then(response => {
+          // Aquí se puede verificar la respuesta y realizar acciones adicionales si es necesario
+        }).catch(error => {
+          console.error('Error:', error);
+        });
+
+        // Cambiar a la pestaña Método de Pago
+        openTab(event, 'Payment');
+      });
+
 
 
 
