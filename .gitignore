@@ -67,3 +67,4 @@ node_modules/
 
 # Ignorar archivo KEY.json en la ruta especificada
 KioskPay/KEY.json
+KioskPay/db/pb_data/storage/

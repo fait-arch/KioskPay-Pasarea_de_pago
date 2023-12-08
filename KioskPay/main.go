@@ -4,7 +4,7 @@ package main
 
 import (
 	//CreateProduct "KioskPay/pkg"
-	//CreateUser "KioskPay/pkg/CreateUser"
+	CreateUser "KioskPay/pkg/CreateUser"
 	"context"
 	"fmt"
 	"io/ioutil"
@@ -78,15 +78,7 @@ func main() {
 	defer client.Close() //Asegurar el cierre del cliente al final de la función
 
 	/*
-			//
-			//  LEER DATOS DE FORMULARIO DE USERS
-			//
-			// Ruta POST para manejar la entrada del formulario
-			router.POST("/", func(c *gin.Context) {
-				CreateUser.CreateUser(c)
-				// Redirige de vuelta a la página principal después de enviar
-				c.Redirect(http.StatusFound, "/")
-			})
+
 
 			//---------------------------------
 			//  ENVIO A USERS A FIREBASE
@@ -123,6 +115,15 @@ func main() {
 		   fmt.Println(product)
 		   fmt.Println("Product created successfully")
 	*/
+	//
+	//  LEER DATOS DE FORMULARIO DE USERS
+	//
+	// Ruta POST para manejar la entrada del formulario
+	router.POST("/", func(c *gin.Context) {
+		CreateUser.CreateUser(c)
+		// Redirige de vuelta a la página principal después de enviar
+		c.Redirect(http.StatusFound, "/")
+	})
 
 	//
 	//INCIAR :8080
