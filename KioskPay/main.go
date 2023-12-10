@@ -3,19 +3,15 @@
 package main
 
 import (
-	//CreateProduct "KioskPay/pkg"
 	CreateUser "KioskPay/pkg/CreateUser"
-	"context"
+	//SendFirebase "KioskPay/pkg/SendFirebase"
+
 	"fmt"
-	"io/ioutil"
-	"log"
 	"net/http"
 	"os"
 	"os/exec"
 
-	firebase "firebase.google.com/go"
 	"github.com/gin-gonic/gin"
-	"google.golang.org/api/option"
 )
 
 func main() {
@@ -54,44 +50,30 @@ func main() {
 	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.html", gin.H{})
 	})
-
-	//-----------------FIREBASE----------------
-	//  LEVANTAMIENTO DE CONECCION CON FIREBASE
-	//-----------------------------------------
-	// Leer el contenido del archivo de credenciales de Firebase
-	data, err := ioutil.ReadFile("KEY.json")
-	if err != nil {
-		log.Fatalf("error al leer la key file: %v\n", err)
-	}
-	// Crear una opción de configuración para la autenticación de Firebase
-	opt := option.WithCredentialsJSON(data)
-	// Inicializar una nueva aplicación Firebase
-	app, err := firebase.NewApp(context.Background(), nil, opt)
-	if err != nil {
-		log.Fatalf("error levantar app: %v\n", err)
-	}
-	// Obtener un cliente Firestore a partir de la aplicación Firebase
-	client, err := app.Firestore(context.Background())
-	if err != nil {
-		log.Fatalf("error getting Firestore client: %v\n", err)
-	}
-	defer client.Close() //Asegurar el cierre del cliente al final de la función
-
 	/*
-
-
-			//---------------------------------
-			//  ENVIO A USERS A FIREBASE
-			//---------------------------------
-			// Agregar un documento a la colección "Users" en Firestore
-			_, _, err = client.Collection("Users").Add(context.Background(), map[string]interface{}{
-				"user_Name": "texto_prueba_002",
-			})
+			//-----------------FIREBASE----------------
+			//  LEVANTAMIENTO DE CONECCION CON FIREBASE
+			//-----------------------------------------
+			// Leer el contenido del archivo de credenciales de Firebase
+			data, err := ioutil.ReadFile("KEY.json")
 			if err != nil {
-				log.Fatalf("error adding document: %v\n", err)
+				log.Fatalf("error al leer la key file: %v\n", err)
 			}
-			// Imprimir un mensaje indicando que el documento se ha agregado con éxito
-			log.Println("Document added successfully.")
+			// Crear una opción de configuración para la autenticación de Firebase
+			opt := option.WithCredentialsJSON(data)
+			// Inicializar una nueva aplicación Firebase
+			app, err := firebase.NewApp(context.Background(), nil, opt)
+			if err != nil {
+				log.Fatalf("error levantar app: %v\n", err)
+			}
+			// Obtener un cliente Firestore a partir de la aplicación Firebase
+			client, err := app.Firestore(context.Background())
+			if err != nil {
+				log.Fatalf("error getting Firestore client: %v\n", err)
+			}
+			defer client.Close() //Asegurar el cierre del cliente al final de la función
+
+
 
 
 
@@ -120,9 +102,11 @@ func main() {
 	//
 	// Ruta POST para manejar la entrada del formulario
 	router.POST("/", func(c *gin.Context) {
+		// Crea un nuevo usuario
 		CreateUser.CreateUser(c)
-		// Redirige de vuelta a la página principal después de enviar
+		// Redirige de vuelta a la página principal después de enviar el formulario
 		c.Redirect(http.StatusFound, "/")
+
 	})
 
 	//

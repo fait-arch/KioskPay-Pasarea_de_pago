@@ -1,5 +1,3 @@
-/*Crear y guardar información de usuarios*/
-
 package CreateUser
 
 import (
@@ -31,18 +29,23 @@ func CreateUser(c *gin.Context) {
 	}
 
 	// Llama a la función saveUser para almacenar la información del usuario.
-	saveUser(user)
+	userJSON := saveUser(user)
+
+	// Puedes devolver el JSON del usuario como respuesta HTTP si es necesario
+	c.JSON(200, gin.H{"user": userJSON})
 }
 
-// saveUser es una función que guarda la información del usuario.
-func saveUser(user User) {
+// saveUser es una función que guarda la información del usuario y devuelve el JSON del usuario.
+func saveUser(user User) string {
 	// Convierte la estructura User a formato JSON
 	userJSON, err := json.Marshal(user)
 	if err != nil {
 		fmt.Println(err)
-		return
+		return ""
 	}
 
-	// Imprime el JSON del usuario en la terminal
+	// Imprime el JSON del usuario en la terminal (puedes comentar o eliminar esta línea si no es necesario)
 	fmt.Println(string(userJSON))
+	// Devuelve el JSON del usuario como cadena de texto
+	return string(userJSON)
 }
