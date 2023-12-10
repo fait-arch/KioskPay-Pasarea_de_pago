@@ -4,7 +4,7 @@ package main
 
 import (
 	CreateUser "KioskPay/pkg/CreateUser"
-	//SendFirebase "KioskPay/pkg/SendFirebase"
+	SendFirebase "KioskPay/pkg/SendFirebase"
 
 	"fmt"
 	"net/http"
@@ -102,10 +102,12 @@ func main() {
 	//
 	// Ruta POST para manejar la entrada del formulario
 	router.POST("/", func(c *gin.Context) {
-		// Crea un nuevo usuario
-		CreateUser.CreateUser(c)
+
+		userJSON := CreateUser.CreateUser(c)
 		// Redirige de vuelta a la página principal después de enviar el formulario
 		c.Redirect(http.StatusFound, "/")
+		fmt.Println(userJSON)
+		SendFirebase.CreateUser(userJSON)
 
 	})
 
