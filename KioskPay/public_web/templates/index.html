@@ -124,7 +124,7 @@
             <label for="phone">Teléfono:</label>
             <input type="tel" id="phone" name="phone" required>
 
-            <button type="button" id="submitButton">Enviar</button>
+            <button type="button" id="sendButton">Enviar</button>
           </form>
 
         </div>
@@ -423,24 +423,50 @@
         }
       }
 
-      //Funcion para que el boton enviar de la pestaña Dirección de Facturación envié datos y pase a la siguiente pestaña
-      document.getElementById('submitButton').addEventListener('click', function() {
+      // Validación y envío de datos
+      document.getElementById('sendButton').addEventListener('click', function(event) {
+        // Validar los campos del formulario
+        if (validarFormulario()) {
+          // El formulario es válido, enviar datos al servidor
+          enviarDatos();
+        } else {
+          // El formulario no es válido, mostrar mensaje de error
+          alert("Por favor, completa todos los campos del formulario.");
+          event.preventDefault();
+        }
+      });
+
+      // Función para validar el formulario
+      function validarFormulario() {
+        // Obtener todos los campos de entrada del formulario de facturación
+        var campos = document.querySelectorAll('#billingForm input');
+
+        // Revisar cada campo para asegurarse de que no esté vacío
+        for (var i = 0; i < campos.length; i++) {
+          if (campos[i].value.trim() === '') {
+            return false; // Se encontró un campo vacío
+          }
+        }
+        return true; // Todos los campos están llenos
+      }
+
+      // Función para enviar los datos
+      function enviarDatos() {
         var billingForm = document.getElementById('billingForm');
         var formData = new FormData(billingForm);
 
-        // Enviar datos al servidor en Go
+        // Enviar datos al servidor
         fetch('/', {
           method: 'POST',
           body: formData
         }).then(response => {
           // Aquí se puede verificar la respuesta y realizar acciones adicionales si es necesario
+          openTab(event, 'Payment'); // Cambiar a la pestaña Método de Pago
         }).catch(error => {
           console.error('Error:', error);
         });
+      }
 
-        // Cambiar a la pestaña Método de Pago
-        openTab(event, 'Payment');
-      });
 
 
 
