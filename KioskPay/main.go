@@ -1,5 +1,4 @@
 /*Server con golang*/
-
 package main
 
 import (
@@ -50,53 +49,31 @@ func main() {
 	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.html", gin.H{})
 	})
+
 	/*
-			//-----------------FIREBASE----------------
-			//  LEVANTAMIENTO DE CONECCION CON FIREBASE
-			//-----------------------------------------
-			// Leer el contenido del archivo de credenciales de Firebase
-			data, err := ioutil.ReadFile("KEY.json")
-			if err != nil {
-				log.Fatalf("error al leer la key file: %v\n", err)
-			}
-			// Crear una opción de configuración para la autenticación de Firebase
-			opt := option.WithCredentialsJSON(data)
-			// Inicializar una nueva aplicación Firebase
-			app, err := firebase.NewApp(context.Background(), nil, opt)
-			if err != nil {
-				log.Fatalf("error levantar app: %v\n", err)
-			}
-			// Obtener un cliente Firestore a partir de la aplicación Firebase
-			client, err := app.Firestore(context.Background())
-			if err != nil {
-				log.Fatalf("error getting Firestore client: %v\n", err)
-			}
-			defer client.Close() //Asegurar el cierre del cliente al final de la función
 
 
+	   //---------------------------------
+	   //  ENVIO A PRODUCTS A POCKET BASE
+	   //---------------------------------
+	   product := &CreateProduct.Product{
+	       ProductImg:        "",
+	       ProductName:       "",
+	       ProductPrice:      "",
+	       ProductDescripion: "",
+	   }
 
 
-
-		   //---------------------------------
-		   //  ENVIO A PRODUCTS A POCKET BASE
-		   //---------------------------------
-		   product := &CreateProduct.Product{
-		       ProductImg:        "",
-		       ProductName:       "",
-		       ProductPrice:      "",
-		       ProductDescripion: "",
-		   }
-
-
-		   resp, err := CreateProduct.CreateProduct(product)
-		   if err != nil {
-		       fmt.Println("Error:", err)
-		       return
-		   }
-		   defer resp.Body.Close()
-		   fmt.Println(product)
-		   fmt.Println("Product created successfully")
+	   resp, err := CreateProduct.CreateProduct(product)
+	   if err != nil {
+	       fmt.Println("Error:", err)
+	       return
+	   }
+	   defer resp.Body.Close()
+	   fmt.Println(product)
+	   fmt.Println("Product created successfully")
 	*/
+
 	//
 	//  LEER DATOS DE FORMULARIO DE USERS
 	//

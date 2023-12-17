@@ -22,7 +22,7 @@ let handle_click = (event) => {
 }
 document.addEventListener("click", handle_click);
 const paypal_sdk_url = "https://www.paypal.com/sdk/js";
-const client_id = "AUGc_WptCB1IQOyaDI2apwMB7I0lYf9VZTPBHLL0oYiwAJhoMEQ2N7HvvSyVAibrDQCnmHnBimDTTmgU";
+const client_id = "ASncsuD8CF57dhT0J6eTmtyEqoU_QFkK8UIE2OvoJCWnm1Ztd1_gkzec7-7SZUEVA6X2Kz0tI64hg2z8";
 const currency = "USD";
 const intent = "capture";
 let alerts = document.getElementById("alerts");
@@ -47,7 +47,7 @@ url_to_head(paypal_sdk_url + "?client-id=" + client_id + "&enable-funding=venmo&
         },
 
         createOrder: function(data, actions) { //https://developer.paypal.com/docs/api/orders/v2/#orders_create
-            return fetch("http://localhost:8080/create_order", {
+            return fetch("http://localhost:3000/create_order", {
                 method: "post", headers: { "Content-Type": "application/json; charset=utf-8" },
                 body: JSON.stringify({ "intent": intent })
             })
@@ -57,7 +57,7 @@ url_to_head(paypal_sdk_url + "?client-id=" + client_id + "&enable-funding=venmo&
 
         onApprove: function(data, actions) {
             let order_id = data.orderID;
-            return fetch("http://localhost:8080/complete_order", {
+            return fetch("http://localhost:3000/complete_order", {
                 method: "post", headers: { "Content-Type": "application/json; charset=utf-8" },
                 body: JSON.stringify({
                     "intent": intent,
