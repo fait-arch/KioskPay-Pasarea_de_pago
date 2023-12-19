@@ -1,11 +1,12 @@
-/*Server con golang*/
 package main
 
 import (
 	CreateUser "KioskPay/pkg/CreateUser"
+	SeeProduct "KioskPay/pkg/SeeProduct"
 	SendFirebase "KioskPay/pkg/SendFirebase"
 
 	"fmt"
+	"log"
 	"net/http"
 	"os"
 	"os/exec"
@@ -50,30 +51,6 @@ func main() {
 		c.HTML(http.StatusOK, "index.html", gin.H{})
 	})
 
-	/*
-
-
-	   //---------------------------------
-	   //  ENVIO A PRODUCTS A POCKET BASE
-	   //---------------------------------
-	   product := &CreateProduct.Product{
-	       ProductImg:        "",
-	       ProductName:       "",
-	       ProductPrice:      "",
-	       ProductDescripion: "",
-	   }
-
-
-	   resp, err := CreateProduct.CreateProduct(product)
-	   if err != nil {
-	       fmt.Println("Error:", err)
-	       return
-	   }
-	   defer resp.Body.Close()
-	   fmt.Println(product)
-	   fmt.Println("Product created successfully")
-	*/
-
 	//
 	//  LEER DATOS DE FORMULARIO DE USERS
 	//
@@ -88,11 +65,20 @@ func main() {
 
 	})
 
+	// Llama a la función SeeProduct()
+	resultSeeProduct, err := SeeProduct.SeeProduct()
+	if err != nil {
+		log.Println("Error al obtener el producto:", err)
+	} else {
+		log.Printf("Resultado JSON: %+v\n", resultSeeProduct)
+	}
+	print(resultSeeProduct)
 	//
 	//INCIAR :8080
 	//
 	// Configurar la confianza en los proxies
 	router.ForwardedByClientIP = true
+
 	// Habilitar el puerto 8080
 	fmt.Println("🅢 🅔 🅡 🅥 🅔 🅡   🅡 🅤 🅝 🏃‍♂️🏃‍♂️")
 	router.Run(":8080")
