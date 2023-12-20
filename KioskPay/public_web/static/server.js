@@ -1,16 +1,19 @@
 import express from 'express';
 import fetch from 'node-fetch';
 import 'dotenv/config';
-const app = express();
+
+const app = expreclsss();
 app.use(express.json());
 app.use(express.urlencoded({
     extended: true
 }));
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8080;
 const environment = process.env.ENVIRONMENT || 'sandbox';
 const client_id = process.env.CLIENT_ID;
 const client_secret = process.env.CLIENT_SECRET;
 const endpoint_url = environment === 'sandbox' ? 'https://api-m.sandbox.paypal.com' : 'https://api-m.paypal.com';
+
+
 
 
 app.post('/create_order', (req, res) => {
@@ -26,6 +29,7 @@ app.post('/create_order', (req, res) => {
                 }]
             };
             const data = JSON.stringify(order_data_json)
+
 
             fetch(endpoint_url + '/v2/checkout/orders', { //https://developer.paypal.com/docs/api/orders/v2/#orders_create
                     method: 'POST',
@@ -45,6 +49,8 @@ app.post('/create_order', (req, res) => {
             res.status(500).send(err)
         })
 });
+
+
 
 
 app.post('/complete_order', (req, res) => {
@@ -69,7 +75,9 @@ app.post('/complete_order', (req, res) => {
         })
 });
 
+
 // Helper / Utility functions
+
 
 //Servers the index.html file
 app.get('/', (req, res) => {
@@ -83,6 +91,7 @@ app.get('/style.css', (req, res) => {
 app.get('/script.js', (req, res) => {
     res.sendFile(process.cwd() + '/script.js');
 });
+
 
 //PayPal Developer YouTube Video:
 //How to Retrieve an API Access Token (Node.js)
@@ -103,6 +112,7 @@ function get_access_token() {
             return json.access_token;
         })
 }
+
 
 app.listen(port, () => {
     console.log(`Server listening at http://localhost:${port}`)

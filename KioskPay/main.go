@@ -2,11 +2,9 @@ package main
 
 import (
 	CreateUser "KioskPay/pkg/CreateUser"
-	SeeProduct "KioskPay/pkg/SeeProduct"
 	SendFirebase "KioskPay/pkg/SendFirebase"
 
 	"fmt"
-	"log"
 	"net/http"
 	"os"
 	"os/exec"
@@ -52,6 +50,10 @@ func main() {
 	})
 
 	//
+	//
+	//
+
+	//
 	//  LEER DATOS DE FORMULARIO DE USERS
 	//
 	// Ruta POST para manejar la entrada del formulario
@@ -64,15 +66,16 @@ func main() {
 		SendFirebase.CreateUser(userJSON)
 
 	})
-
-	// Llama a la función SeeProduct()
-	resultSeeProduct, err := SeeProduct.SeeProduct()
-	if err != nil {
-		log.Println("Error al obtener el producto:", err)
-	} else {
-		log.Printf("Resultado JSON: %+v\n", resultSeeProduct)
-	}
-	print(resultSeeProduct)
+	/*
+		// Llama a la función SeeProduct()
+		resultSeeProduct, err := SeeProduct.SeeProduct()
+		if err != nil {
+			log.Println("Error al obtener el producto:", err)
+		} else {
+			log.Printf("Resultado JSON: %+v\n", resultSeeProduct)
+		}
+		print(resultSeeProduct)
+	*/
 	//
 	//INCIAR :8080
 	//
