@@ -5,12 +5,13 @@
 
 
   <head>
+
     <meta charset="UTF-8" />   
     <meta http-equiv="x-ua-compatible" content="ie=edge" /> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet"  href="/static/style.css">
-    <script src="/static/script.js"></script>
+    <script src="/static/main.js"></script>
     <script src="/static/ScriptProduct.js"></script>
 
     <title>KioskPay</title>
@@ -20,16 +21,11 @@
     <link rel="preconnect" href="https://fonts.gsX|tatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
     
-
   </head>
 
 
   <body>
 
-    <header>
-
-    </header>
-  
     <main>
       <div class="container header-container">
         <h1>KioskPay</h1>
@@ -159,18 +155,31 @@
                     },
             
                     createOrder: function(data, actions) {
+                      var itemPrice = document.getElementById('itemPrice').textContent.replace('$', '').trim();
+                      var itemDescription = document.getElementById('itemDescription').textContent.trim();
+                      
                       return actions.order.create({
-                        purchase_units: [{"description":"LA DESCRIPCION DE TU PRODUCTO","amount":{"currency_code":"USD","value":1}}]
+                        purchase_units: [{
+                          description: itemDescription,
+                          amount: {
+                            currency_code: "USD",
+                            value: itemPrice
+                          }
+                        }]
                       });
                     },
-            
+                    
                     onApprove: function(data, actions) {
                       return actions.order.capture().then(function(orderData) {
                         
+                        // Muestra el mensaje de confirmación
+                        mostrarMensajeConfirmacion();
+
                         // Full available details
                         console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
-            
-                        actions.redirect('LA URL DE TU PAGINA DE GRACIAS');
+
+                        // Redirecciona a la página de agradecimiento (si es necesario)
+                        // actions.redirect('LA URL DE TU PAGINA DE GRACIAS');
                         
                       });
                     },
@@ -279,6 +288,7 @@
     </footer>
 
     <script>
+      
       // Accion abrir la ventana modal
       var modal = document.getElementById('shoppingCartModal');
       var btns = document.querySelectorAll('.add-to-cart-btn');
@@ -500,10 +510,22 @@
         });
       }
 
+      //Mensaje de confirmacion de pago
+      function mostrarMensajeConfirmacion() {
+        var mensaje = document.createElement('div');
+        mensaje.id = 'mensajeConfirmacion';
+        mensaje.textContent = 'Gracias por tu pago. Tu transacción ha sido exitosa.';
+        mensaje.style.color = 'green'; // Estiliza según tus preferencias
+        mensaje.style.marginTop = '20px';
+        
+        // Ubica el mensaje en tu página web
+        var contenedor = document.getElementById('smart-button-container');
+        contenedor.appendChild(mensaje);
+      }
+      
 
 
-
-
+      
     </script>
     
   </body>

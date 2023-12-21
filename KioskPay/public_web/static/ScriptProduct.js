@@ -1,4 +1,6 @@
-// Crear un nuevo producto
+/*Siguiente vercion implementacion de edicion de productos con interface grafica */
+
+/*// Crear un nuevo producto
 var nuevoProducto = document.createElement('div');
 nuevoProducto.className = 'product-card';
 
@@ -40,3 +42,4 @@ infoProducto.appendChild(botonProducto);
 // Añadir el nuevo producto a la lista de productos
 var contenedorProductos = document.querySelector('.products-container');
 contenedorProductos.appendChild(nuevoProducto);
+*/
