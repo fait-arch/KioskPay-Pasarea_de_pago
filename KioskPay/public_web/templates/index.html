@@ -1,90 +1,3 @@
-<!--
-<!DOCTYPE html>
-<html lang="en" data-theme="dark">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>PPCP Standard</title>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/minstyle.io@2.0.1/dist/css/minstyle.io.min.css">
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <script src="script.js"></script>
-    <script src="paypal.js"></script>
-  </head>
-  <body>
-    <div class="container">
-      <div class="row">
-        <div class="col-sm"></div>
-        <div class="col-sm">
-          <h2 class="ms-text-center">ai-generated NFT Bored Ape</h2>
-          <div class="ms-text-center pb-2">
-            <div class="ms-label ms-large ms-action2 ms-light">$100.00 USD</div>
-          </div>
-          <div id="alerts" class="ms-text-center"></div>
-          <div id="loading" class="spinner-container ms-div-center">
-            <div class="spinner"></div>
-          </div>
-          <div id="content" class="hide">
-            <div class="ms-card ms-fill">
-              <div class="ms-card-content">
-                <img src="https://cdn.discordapp.com/attachments/1060825015681028127/1076385063903694908/rauljr7_3d_e83fed6a-69aa-4a6a-b0ec-928edd57aecf.png" style="width:400px">
-              </div>
-            </div>
-            <div id="payment_options"></div>
-          </div>
-        </div>
-        <div class="col-sm"></div>
-      </div>
-    </div>
-  </body>
-</html>
--->
-
-
-<!--
-<!DOCTYPE html>
-<html lang="en" data-theme="dark">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>PPCP Standard</title>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/minstyle.io@2.0.1/dist/css/minstyle.io.min.css">
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <script src="script.js"></script>
-    <script src="paypal.js"></script>
-  </head>
-  <body>
-    <div class="container">
-      <div class="row">
-        <div class="col-sm"></div>
-        <div class="col-sm">
-          <h2 class="ms-text-center">ai-generated NFT Bored Ape</h2>
-          <div class="ms-text-center pb-2">
-            <div class="ms-label ms-large ms-action2 ms-light">$100.00 USD</div>
-          </div>
-          <div id="alerts" class="ms-text-center"></div>
-          <div id="loading" class="spinner-container ms-div-center">
-            <div class="spinner"></div>
-          </div>
-          <div id="content" class="hide">
-            <div class="ms-card ms-fill">
-              <div class="ms-card-content">
-                <img src="https://cdn.discordapp.com/attachments/1060825015681028127/1076385063903694908/rauljr7_3d_e83fed6a-69aa-4a6a-b0ec-928edd57aecf.png" style="width:400px">
-              </div>
-            </div>
-            <div id="payment_options"></div>
-          </div>
-        </div>
-        <div class="col-sm"></div>
-      </div>
-    </div>
-  </body>
-</html>
--->
-
-
-
 <!-- templates --> 
 
 <!DOCTYPE html>
@@ -137,7 +50,7 @@
             <button class="tablink" onclick="openTab(event, 'Cart')">Contenido del Carrito</button>
             <button class="tablink" onclick="openTab(event, 'Billing')">Dirección de Facturación</button>
             <button class="tablink" onclick="openTab(event, 'Payment')">Método de Pago</button>
-            <button class="tablink" onclick="openTab(event, 'Confirm')">Confirmar Pedido</button>
+            <!--button class="tablink" onclick="openTab(event, 'Confirm')">Confirmar Pedido</button>-->
           </div>
           
           <!-- Contenido del carrito -->
@@ -247,7 +160,7 @@
             
                     createOrder: function(data, actions) {
                       return actions.order.create({
-                        purchase_units: [{"description":"LA DESCRIPCION DE TU PRODUCTO","amount":{"currency_code":"USD","value":10}}]
+                        purchase_units: [{"description":"LA DESCRIPCION DE TU PRODUCTO","amount":{"currency_code":"USD","value":1}}]
                       });
                     },
             
@@ -283,18 +196,18 @@
 
         
 
-          </div>
+      
 
-          <!-- Confirmar Pedido -->
+          <!-- Confirmar Pedido 
           <div id="Confirm" class="tabcontent">
             <div class="center-content">
               
               <button class="finalize-purchase-btn">Finalizar Compra</button>
 
             </div>
-            <!-- Confirmar pedido -->
+            
           </div>
-
+          -->
         </div>
 
       </div>
