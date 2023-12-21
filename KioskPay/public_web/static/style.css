@@ -51,6 +51,7 @@ main {
   margin: 10px 0;
 }
 .product-card img {
+  padding-top: 20px;
   width: 100%; /* Ajusta este valor para cambiar el tamaño */
   height: auto;
   max-width: 200px; /* Nuevo máximo de ancho */
