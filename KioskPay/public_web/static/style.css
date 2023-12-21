@@ -151,7 +151,7 @@ footer {
 }
 
 /* Estilo del contenido de las pestañas */
-  /* Estilo del contenido de las pestañas */
+
 .tabcontent {
   display: none;
   padding: 100px 12px 1px 12px;
@@ -230,12 +230,12 @@ footer {
 
 
 #totalPriceDisplay {
-  font-size: 1em; /* Tamaño de fuente más pequeño */
+  font-size: 1em; /* Tamaño de fuente  */
   font-weight: bold; /* Fuente en negrita */
-  color: #4CAF50; /* Color verde, adaptable a tus preferencias */
+  color: #4CAF50; /* Color verde*/
   padding: 5px; /* Menor espacio alrededor del texto */
-  border-radius: 3px; /* Bordes aún más suavemente redondeados */
-  background-color: #f4f4f4; /* Fondo claro, ajustable según tu esquema de colores */
+  border-radius: 3px; /* Bordes suaves y redondeados */
+  background-color: #f4f4f4; /*Fondo claro*/
   margin-top: 10px; /* Menos espacio en la parte superior */
   display: inline-block; /* Hacer que el fondo solo rodee el texto */
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Sombra más sutil y pequeña */
@@ -247,15 +247,15 @@ footer {
 
 
 /* Estilo general del formulario */
-/* Ajustar la posición general del formulario */
+
 #Billing form {
   max-width: 600px;
-  margin: 10px auto 20px; /* Reducir el margen superior */
+  margin: 10px auto 20px; /*margen superior */
   padding: 20px;
   background: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: relative; /* Posición relativa para posicionar el título */
+  position: relative; /* Posición para posicionar el título */
 }
 
 
